@@ -5,7 +5,7 @@ const { operations, parse, process } = pipelineSync;
 describe('sync pipeline', ()=> {
   describe('parsing', ()=> {
     it('parses set 1', ()=> {
-      const commands = pipelineSync.parse('set 1');
+      const commands = pipelineSync.parse('set 1', operations);
       expect(commands.length).to.equal(1);
       expect(commands[0]).to.eql({
         operation: operations.set,
@@ -13,7 +13,7 @@ describe('sync pipeline', ()=> {
       });
     });
     it('parses set 1 | add 2', ()=> {
-      const commands = pipelineSync.parse('set 1 | add 2');
+      const commands = pipelineSync.parse('set 1 | add 2', operations);
       expect(commands.length).to.equal(2);
       expect(commands).to.eql([
         {

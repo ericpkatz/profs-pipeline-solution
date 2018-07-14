@@ -1,16 +1,7 @@
-const parse = (string)=> {
-  return string.split('|').reduce((memo, commandString)=> {
-    const parts = commandString.trim().split(' ');
-    memo.push({
-      operation: operations[parts[0]],
-      argument: parts[1]
-    });
-    return memo;
-  }, []);
-}
+const parse = require('./parse');
 
 const process = (string)=> {
-  return parse(string).reduce((memo, command)=> {
+  return parse(string, operations).reduce((memo, command)=> {
     memo = command.operation(memo, command.argument);
     return memo;
   }, undefined);
